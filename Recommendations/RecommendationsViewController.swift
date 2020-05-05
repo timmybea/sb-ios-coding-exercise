@@ -6,14 +6,6 @@
 import UIKit
 import OHHTTPStubs
 
-struct Recommendation {
-    var imageURL = String()
-    var title = String()
-    var tagline = String()
-    var rating: Float = 0.0
-    var isReleased: Bool = false
-}
-
 class RecommendationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -47,36 +39,10 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
             
             // TASK: This feels gross and smells. Can this json parsing be made more robust and extensible?
             do {
-                let json = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions(rawValue: UInt(0))) as! [String: AnyObject]
                 
-                if let titles = json["titles"] as? [[String: AnyObject]] {
-                    for title in titles {
-                        var recommendation = Recommendation()
-                        
-                        if let name = title["title"] as? String {
-                            recommendation.title = name
-                        }
-                        
-                        if let isReleased = title["is_released"] as? Bool {
-                            recommendation.isReleased = isReleased
-                        }
-                        
-                        if let ratingObj = title["rating"],
-                            let rating = Float("\(ratingObj)") {
-                            recommendation.rating = rating
-                        }
-                        
-                        if let tagline = title["tagline"] as? String {
-                            recommendation.tagline = tagline
-                        }
-                        
-                        if let image = title["image"] as? String {
-                            recommendation.imageURL = image
-                        }
-
-                        self.recommendations.append(recommendation)
-                    }
-                }
+                let recommendationResult = try JSONDecoder().decode(RecommendationResult.self, from: receivedData)
+                
+                self.recommendations = recommendationResult.titles
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
