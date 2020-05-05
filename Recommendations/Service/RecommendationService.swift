@@ -8,7 +8,61 @@
 
 import Foundation
 
-class RecommendationService {
+//MARK: BaseWebService
+class BaseWebService {
+        
+        enum WebServiceError: Error {
+            case invalidResponse
+            case statusCode(_ status: Int)
+            case noData
+            case parsing
+        }
     
+}
 
+//MARK: RecommendationService
+class RecommendationService: BaseWebService {
+    
+    func getRecommendedTitles(_ completion: @escaping(Swift.Result<RecommendationResult, Swift.Error>) ->()) {
+        guard let url = URL(string: Stub.stubbedURL_doNotChange) else { fatalError() }
+        
+        let request = URLRequest(url: url)
+        let session = URLSession(configuration: .default)
+        
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            
+            guard let receivedData = data else {
+                completion(.failure(WebServiceError.noData))
+                return
+            }
+            
+            guard let responseHTTPURL = response as? HTTPURLResponse else {
+                completion(.failure(WebServiceError.invalidResponse))
+                return
+            }
+            
+            switch responseHTTPURL.statusCode {
+            case 200...300:
+                
+                do {
+                    let recommendationResult = try JSONDecoder().decode(RecommendationResult.self, from: receivedData)
+                    completion(.success(recommendationResult))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            default:
+                completion(.failure(WebServiceError.statusCode(responseHTTPURL.statusCode)))
+                return
+            }
+        })
+
+        task.resume()
+    }
+    
 }

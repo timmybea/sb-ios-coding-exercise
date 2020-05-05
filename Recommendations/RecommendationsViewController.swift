@@ -10,6 +10,12 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var recommendationResult: RecommendationResult? {
+        didSet {
+            self.recommendations = recommendationResult?.titles ?? []
+        }
+    }
+    
     var recommendations = [Recommendation]()
     
     override func viewDidLoad() {
@@ -30,30 +36,21 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
         // NOTE: please maintain the stubbed url we use here and the usage of
         // a URLSession dataTask to ensure our stubbed response continues to
         // work; however, feel free to reorganize/rewrite/refactor as needed
-        guard let url = URL(string: Stub.stubbedURL_doNotChange) else { fatalError() }
-        let request = URLRequest(url: url)
-        let session = URLSession(configuration: .default)
-
-        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-            guard let receivedData = data else { return }
-            
-            // TASK: This feels gross and smells. Can this json parsing be made more robust and extensible?
-            do {
+        RecommendationService().getRecommendedTitles { (result) in
+            switch result {
+            case .success(let recommendationResult):
+                self.recommendationResult = recommendationResult
                 
-                let recommendationResult = try JSONDecoder().decode(RecommendationResult.self, from: receivedData)
-                
-                self.recommendations = recommendationResult.titles
-                
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     self.tableView.reloadData()
                 }
+                
+            case .failure(let error):
+                fatalError("Error recommendation service: \(error), File: \(#file), Line: \(#line)")
             }
-            catch {
-                fatalError("Error parsing stubbed json data: \(error)")
-            }
-        });
-
-        task.resume()
+        }
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
