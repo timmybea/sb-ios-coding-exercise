@@ -21,6 +21,10 @@
 		B0397F1424622BD2009B9D00 /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1324622BD2009B9D00 /* RecommendationService.swift */; };
 		B0397F1B24624145009B9D00 /* ArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1A24624145009B9D00 /* ArchiveService.swift */; };
 		B0397F1D246241A4009B9D00 /* RecommendationResultArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */; };
+		B0D8EF932462FC750031F8F6 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF922462FC750031F8F6 /* RecommendationViewModel.swift */; };
+		B0D8EF98246335920031F8F6 /* RecommendationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF97246335920031F8F6 /* RecommendationListViewModel.swift */; };
+		B0D8EF9A24633FE60031F8F6 /* RecommendationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF9924633FE60031F8F6 /* RecommendationDataSource.swift */; };
+		B0D8EF9C2463401D0031F8F6 /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF9B2463401D0031F8F6 /* DynamicValue.swift */; };
 		C4925D209D942A35ADF2FD9E /* libPods-Recommendations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4837A2CE5DC84736E4DD6D1B /* libPods-Recommendations.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +48,10 @@
 		B0397F1324622BD2009B9D00 /* RecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationService.swift; sourceTree = "<group>"; };
 		B0397F1A24624145009B9D00 /* ArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveService.swift; sourceTree = "<group>"; };
 		B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationResultArchiver.swift; sourceTree = "<group>"; };
+		B0D8EF922462FC750031F8F6 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
+		B0D8EF97246335920031F8F6 /* RecommendationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationListViewModel.swift; sourceTree = "<group>"; };
+		B0D8EF9924633FE60031F8F6 /* RecommendationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationDataSource.swift; sourceTree = "<group>"; };
+		B0D8EF9B2463401D0031F8F6 /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 			children = (
 				7A87BB42244F9A1F008A8669 /* Do Not Modify These Files */,
 				B0397F192462412B009B9D00 /* Archiver */,
+				B0D8EF912462FC590031F8F6 /* ViewModel */,
 				B0397F0D246224A9009B9D00 /* Model */,
 				B0397F1224622BB8009B9D00 /* Service */,
 				B0397F1F246258FD009B9D00 /* Controller */,
@@ -161,6 +170,17 @@
 				7A7852F7244F410900651421 /* RecommendationsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B0D8EF912462FC590031F8F6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B0D8EF9B2463401D0031F8F6 /* DynamicValue.swift */,
+				B0D8EF922462FC750031F8F6 /* RecommendationViewModel.swift */,
+				B0D8EF97246335920031F8F6 /* RecommendationListViewModel.swift */,
+				B0D8EF9924633FE60031F8F6 /* RecommendationDataSource.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +286,13 @@
 				7A87BB3C244F5C38008A8669 /* RecommendationTableViewCell.swift in Sources */,
 				7A7852F8244F410900651421 /* RecommendationsViewController.swift in Sources */,
 				B0397F1424622BD2009B9D00 /* RecommendationService.swift in Sources */,
+				B0D8EF9C2463401D0031F8F6 /* DynamicValue.swift in Sources */,
 				7A7852F4244F410900651421 /* AppDelegate.swift in Sources */,
+				B0D8EF98246335920031F8F6 /* RecommendationListViewModel.swift in Sources */,
 				B0397F1B24624145009B9D00 /* ArchiveService.swift in Sources */,
 				7A87BB41244F9A19008A8669 /* Stub.swift in Sources */,
+				B0D8EF932462FC750031F8F6 /* RecommendationViewModel.swift in Sources */,
+				B0D8EF9A24633FE60031F8F6 /* RecommendationDataSource.swift in Sources */,
 				B0397F1124622B4C009B9D00 /* RecommendationResult.swift in Sources */,
 				B0397F1D246241A4009B9D00 /* RecommendationResultArchiver.swift in Sources */,
 			);
