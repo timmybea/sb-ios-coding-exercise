@@ -16,7 +16,11 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
-    var recommendations = [Recommendation]()
+    private var recommendations = [Recommendation]()
+    
+    private var pendingImageTasks: [URL : URLSessionDataTask] = [:]
+    
+    private var imageCache = NSCache<NSString, UIImage>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,15 +66,38 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
         cell.taglineLabel.text = recommendation.tagline
         cell.ratingLabel.text = "Rating: \(recommendation.rating)"
         
-        if let url = URL(string: recommendation.imageURL) {
-            let data = try? Data(contentsOf: url)
+        guard let imageURL = URL(string: recommendation.imageURL) else { return cell }
+        
+        //Attempt to retrieve the image from the cache
+        guard let image = self.imageCache.object(forKey: NSString(string: imageURL.absoluteString)) else {
+            self.fetchImage(at: imageURL) { [weak self] (result) in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let image):
+                    self.imageCache.setObject(image, forKey: NSString(string: imageURL.absoluteString))
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
 
-            if let imageData = data {
-                let image = UIImage(data: imageData)
-                cell.recommendationImageView?.image = image
+                        //Ensure that the cell is still visible (This would typically be a unique title id)
+                        guard let index = self.recommendations.firstIndex(where: { $0.title == recommendation.title }),
+                            index == indexPath.row else { return }
+                        
+                        guard (self.tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false) else { return }
+                        
+                        //Get the cell and set the image
+                        guard let cell = self.tableView.cellForRow(at: indexPath) as? RecommendationTableViewCell else { return }
+                        cell.recommendationImageView?.image = image
+                    }
+                case .failure(let error):
+                    print("Error fetching image: \(imageURL.absoluteString): Error: \(error.localizedDescription)")
+                }
             }
+            return cell
         }
 
+        cell.recommendationImageView?.image = image
         return cell
     }
     
@@ -86,4 +113,33 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
         return 134
     }
     
+}
+
+//MARK: ImageCaching
+extension RecommendationsViewController {
+
+    private func fetchImage(at url: URL, completion: @escaping (Swift.Result<UIImage, Swift.Error>) -> ()) {
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 5.0)
+        let fetchImageTask = URLSession.shared.dataTask(with: request) { [weak self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
+
+            if let url = response?.url {
+                DispatchQueue.main.async {
+                    self?.pendingImageTasks.removeValue(forKey: url)
+                }
+            }
+
+            let result = Swift.Result<UIImage, Swift.Error> {
+                guard error == nil else { throw error! }
+                guard let _ = data else { throw NSError(domain: "com.recommendations.demo", code: -1) }
+                guard let image = UIImage(data: data!) else { throw NSError(domain: "com.recommendations.demo", code: -1) }
+                return image
+            }
+
+            completion(result)
+        }
+
+        pendingImageTasks[url] = fetchImageTask
+        fetchImageTask.resume()
+    }
+
 }
