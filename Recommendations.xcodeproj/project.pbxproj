@@ -19,6 +19,8 @@
 		B0397F0F246224BB009B9D00 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F0E246224BB009B9D00 /* Recommendation.swift */; };
 		B0397F1124622B4C009B9D00 /* RecommendationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1024622B4C009B9D00 /* RecommendationResult.swift */; };
 		B0397F1424622BD2009B9D00 /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1324622BD2009B9D00 /* RecommendationService.swift */; };
+		B0397F1B24624145009B9D00 /* ArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1A24624145009B9D00 /* ArchiveService.swift */; };
+		B0397F1D246241A4009B9D00 /* RecommendationResultArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */; };
 		C4925D209D942A35ADF2FD9E /* libPods-Recommendations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4837A2CE5DC84736E4DD6D1B /* libPods-Recommendations.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		B0397F0E246224BB009B9D00 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		B0397F1024622B4C009B9D00 /* RecommendationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationResult.swift; sourceTree = "<group>"; };
 		B0397F1324622BD2009B9D00 /* RecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationService.swift; sourceTree = "<group>"; };
+		B0397F1A24624145009B9D00 /* ArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveService.swift; sourceTree = "<group>"; };
+		B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationResultArchiver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				7A87BB42244F9A1F008A8669 /* Do Not Modify These Files */,
+				B0397F192462412B009B9D00 /* Archiver */,
 				B0397F0D246224A9009B9D00 /* Model */,
 				B0397F1224622BB8009B9D00 /* Service */,
 				7A7852F7244F410900651421 /* RecommendationsViewController.swift */,
@@ -131,6 +136,15 @@
 				B0397F1324622BD2009B9D00 /* RecommendationService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		B0397F192462412B009B9D00 /* Archiver */ = {
+			isa = PBXGroup;
+			children = (
+				B0397F1A24624145009B9D00 /* ArchiveService.swift */,
+				B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */,
+			);
+			path = Archiver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,8 +251,10 @@
 				7A7852F8244F410900651421 /* RecommendationsViewController.swift in Sources */,
 				B0397F1424622BD2009B9D00 /* RecommendationService.swift in Sources */,
 				7A7852F4244F410900651421 /* AppDelegate.swift in Sources */,
+				B0397F1B24624145009B9D00 /* ArchiveService.swift in Sources */,
 				7A87BB41244F9A19008A8669 /* Stub.swift in Sources */,
 				B0397F1124622B4C009B9D00 /* RecommendationResult.swift in Sources */,
+				B0397F1D246241A4009B9D00 /* RecommendationResultArchiver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

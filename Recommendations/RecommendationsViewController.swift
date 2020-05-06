@@ -10,11 +10,11 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var recommendationResult: RecommendationResult? {
-        didSet {
-            self.recommendations = recommendationResult?.titles ?? []
-        }
-    }
+//    private var recommendationResult: RecommendationResult? {
+//        didSet {
+//            self.recommendations = recommendationResult?.titles ?? []
+//        }
+//    }
     
     private var recommendations = [Recommendation]()
     
@@ -37,13 +37,18 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
         tableView.dataSource = self
         tableView.delegate = self
         
+        self.recommendations = getTopTen(RecommendationResultArchiveService.shared.getAll().first)
+            
         // NOTE: please maintain the stubbed url we use here and the usage of
         // a URLSession dataTask to ensure our stubbed response continues to
         // work; however, feel free to reorganize/rewrite/refactor as needed
         RecommendationService().getRecommendedTitles { (result) in
             switch result {
             case .success(let recommendationResult):
-                self.recommendationResult = recommendationResult
+                
+                RecommendationResultArchiveService.shared.save(recommendationResult)
+                
+                self.recommendations = self.getTopTen(RecommendationResultArchiveService.shared.getAll().first)
                 
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
@@ -54,7 +59,15 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
                 fatalError("Error recommendation service: \(error), File: \(#file), Line: \(#line)")
             }
         }
+        
+    }
     
+    private func getTopTen(_ recommendationResult: RecommendationResult?) -> [Recommendation] {
+        guard let unwrappedResult = recommendationResult else { return [] }
+        let topTen = unwrappedResult.titles.filter({ $0.isReleased && !unwrappedResult.titlesOwned.contains($0.title)})
+            .sorted(by: { $0.rating > $1.rating })
+            .prefix(10)
+        return Array(topTen)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

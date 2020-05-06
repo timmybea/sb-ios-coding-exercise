@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Recommendation: Codable {
+class Recommendation: NSObject, NSCoding, Codable {
     var imageURL: String
     var title: String
     var tagline: String
@@ -23,7 +23,7 @@ struct Recommendation: Codable {
         case isReleased = "is_released"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RecommendationKey.self)
         
         self.imageURL = try container.decode(String.self, forKey: .imageURL)
@@ -34,5 +34,20 @@ struct Recommendation: Codable {
         // rating can have nil value in the json. Provide default value for decode failure
         self.rating = (try? container.decode(Float.self, forKey: .rating)) ?? 0.0
     }
+    
+    required init?(coder: NSCoder) {
+        self.imageURL = coder.decodeObject(forKey: RecommendationKey.imageURL.rawValue) as? String ?? ""
+        self.title = coder.decodeObject(forKey: RecommendationKey.title.rawValue) as? String ?? ""
+        self.tagline = coder.decodeObject(forKey: RecommendationKey.tagline.rawValue) as? String ?? ""
+        self.rating = coder.decodeObject(forKey: RecommendationKey.rating.rawValue) as? Float ?? 0.0
+        self.isReleased = coder.decodeObject(forKey: RecommendationKey.isReleased.rawValue) as? Bool ?? false
+     }
+     
+     func encode(with coder: NSCoder) {
+        coder.encode(self.imageURL, forKey: RecommendationKey.imageURL.rawValue)
+        coder.encode(self.title, forKey: RecommendationKey.title.rawValue)
+        coder.encode(self.tagline, forKey: RecommendationKey.tagline.rawValue)
+        coder.encode(self.isReleased, forKey: RecommendationKey.isReleased.rawValue)
+     }
     
 }
