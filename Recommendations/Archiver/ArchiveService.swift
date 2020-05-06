@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: ArchiveService
 class ArchiveService<T: NSObject & NSCoding> {
     
     let archiveUrl: URL
@@ -45,46 +46,10 @@ class ArchiveService<T: NSObject & NSCoding> {
         return allObjects
     }
 
+    /// inserts the new object into unarchived objects and saves.
     func save(_ object: T) {
         accessQueue.async(flags: .barrier, execute: {
-            if let index = self.unarchivedObjects.firstIndex(where: { $0 == object }) {
-                self.unarchivedObjects.remove(at: index)
-            }
             self.unarchivedObjects.insert(object)
-            print("HERE: unarchived objects count \(self.unarchivedObjects.count)")
-        })
-        write()
-    }
-
-    /// adds objects to unarchived objects set and saves.
-    /// if an object is already in the set, it is replaced by the object in the input argument.
-    func save(_ objects: [T]) {
-        accessQueue.async(flags: .barrier, execute: {
-            objects.forEach({ (element) in
-                if let index = self.unarchivedObjects.firstIndex(where: { $0 == element }) {
-                    self.unarchivedObjects.remove(at: index)
-                }
-                self.unarchivedObjects.insert(element)
-            })
-        })
-        write()
-    }
-
-    func remove(_ object: T) {
-        accessQueue.async(flags: .barrier, execute: {
-            self.unarchivedObjects.remove(object)
-        })
-        write()
-    }
-
-    /// removes the objects from the unarchived objects set and saves.
-    func remove(_ objects: [T]) {
-        accessQueue.async(flags: .barrier, execute: {
-            objects.forEach { (element) in
-                if let index = self.unarchivedObjects.firstIndex(where: { $0 == element }) {
-                    self.unarchivedObjects.remove(at: index)
-                }
-            }
         })
         write()
     }
@@ -120,17 +85,4 @@ class ArchiveService<T: NSObject & NSCoding> {
         })
     }
 
-    /**
-        Removes the Archive file from the file system.
-    */
-    func delete() {
-        try? FileManager.default.removeItem(at: self.archiveUrl)
-    }
-
-    /// indicates whether or not the full data at full path is able to be unarchived.
-    func testArchiveCompatability() throws {
-        let data = try Data(contentsOf: archiveUrl)
-        let _ = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [T]
-    }
-    
 }

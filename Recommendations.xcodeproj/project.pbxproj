@@ -100,9 +100,8 @@
 				B0397F192462412B009B9D00 /* Archiver */,
 				B0397F0D246224A9009B9D00 /* Model */,
 				B0397F1224622BB8009B9D00 /* Service */,
-				7A7852F7244F410900651421 /* RecommendationsViewController.swift */,
-				7A87BB3A244F5C38008A8669 /* RecommendationTableViewCell.swift */,
-				7A87BB3B244F5C38008A8669 /* RecommendationTableViewCell.xib */,
+				B0397F1F246258FD009B9D00 /* Controller */,
+				B0397F1E246258E9009B9D00 /* View */,
 				7A7852F9244F410900651421 /* Main.storyboard */,
 				7A7852FC244F410B00651421 /* Assets.xcassets */,
 				7A7852FE244F410B00651421 /* LaunchScreen.storyboard */,
@@ -145,6 +144,23 @@
 				B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */,
 			);
 			path = Archiver;
+			sourceTree = "<group>";
+		};
+		B0397F1E246258E9009B9D00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A87BB3A244F5C38008A8669 /* RecommendationTableViewCell.swift */,
+				7A87BB3B244F5C38008A8669 /* RecommendationTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B0397F1F246258FD009B9D00 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A7852F7244F410900651421 /* RecommendationsViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

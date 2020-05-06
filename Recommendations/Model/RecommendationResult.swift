@@ -40,4 +40,5 @@ class RecommendationResult: NSObject, NSCoding, Codable {
         coder.encode(self.titlesOwned, forKey: RecommendationResultKey.titlesOwned.rawValue)
     }
     
+    
 }
