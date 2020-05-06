@@ -5,6 +5,7 @@
 
 import UIKit
 
+//MARK: RecommendationTableViewCell
 class RecommendationTableViewCell: UITableViewCell {
     @IBOutlet weak var recommendationImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,7 +20,7 @@ class RecommendationTableViewCell: UITableViewCell {
             self.taglineLabel.text  = viewModel.taglineLabel
             self.ratingLabel.text = viewModel.ratingLabel
             
-            viewModel.dynamicImage.addAndNotify(observer: self) { [weak self] in
+            viewModel.addObserverForImageAndNotify(self) { [weak self] in
                 DispatchQueue.main.async { [weak self] in
                     self?.recommendationImageView?.image = viewModel.image
                 }
@@ -28,7 +29,7 @@ class RecommendationTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        self.recommendationViewModel?.dynamicImage.removeAllObservers()
+        self.recommendationViewModel?.removeImageUpdateObservers()
         self.recommendationImageView.image = nil
     }
     

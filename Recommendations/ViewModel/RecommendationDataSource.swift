@@ -8,10 +8,12 @@
 
 import UIKit
 
+//MARK: GenericDataSource
 class GenericDataSource<T> : NSObject {
     var data: DynamicValue<[T]> = DynamicValue([])
 }
 
+//MARK: RecommendationDataSource
 class RecommendationDataSource: GenericDataSource<RecommendationViewModel>, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

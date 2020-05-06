@@ -17,10 +17,6 @@ class RecommendationsViewController: UIViewController {
         return viewModel
     }()
     
-//    private var pendingImageTasks: [URL : URLSessionDataTask] = [:]
-//    
-//    private var imageCache = NSCache<NSString, UIImage>()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,36 +37,6 @@ class RecommendationsViewController: UIViewController {
         }
         
         self.viewModel.fetchData()
-        
     }
     
 }
-
-//MARK: Image Caching
-//extension RecommendationsViewController {
-//
-//    private func fetchImage(at url: URL, completion: @escaping (Swift.Result<UIImage, Swift.Error>) -> ()) {
-//        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 5.0)
-//        let fetchImageTask = URLSession.shared.dataTask(with: request) { [weak self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
-//
-//            if let url = response?.url {
-//                DispatchQueue.main.async {
-//                    self?.pendingImageTasks.removeValue(forKey: url)
-//                }
-//            }
-//
-//            let result = Swift.Result<UIImage, Swift.Error> {
-//                guard error == nil else { throw error! }
-//                guard let _ = data else { throw NSError(domain: "com.recommendations.demo", code: -1) }
-//                guard let image = UIImage(data: data!) else { throw NSError(domain: "com.recommendations.demo", code: -1) }
-//                return image
-//            }
-//
-//            completion(result)
-//        }
-//
-//        pendingImageTasks[url] = fetchImageTask
-//        fetchImageTask.resume()
-//    }
-//
-//}

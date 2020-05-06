@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: RecommendationListViewModel
 class RecommendationListViewModel {
     
     weak var dataSource: GenericDataSource<RecommendationViewModel>?
@@ -60,7 +61,6 @@ class RecommendationListViewModel {
             viewModel.delegate = self
             output.append(viewModel)
         }
-
         return output
     }
     
@@ -89,7 +89,7 @@ extension RecommendationListViewModel: RecommendationViewModelDelegate {
                     }
                 }
                 
-                //Swallow errors: If we can't get images this time, they can be fetched again at another time.
+                //Swallow errors: If we can't get images this time, they can be fetched again when cell is reused.
                 //Kerry: This is more simple than I would like.
                 guard error == nil else {
                     completion(nil)

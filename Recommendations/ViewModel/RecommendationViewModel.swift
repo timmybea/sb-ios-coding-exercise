@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: RecommendationViewModelDelegate
 protocol RecommendationViewModelDelegate {
     func provideImage(for recommendationViewModel: RecommendationViewModel, completion: @escaping(UIImage?)->())
 }
@@ -35,9 +36,6 @@ class RecommendationViewModel {
         return "Rating: \(recommendation.rating)"
     }
     
-    // This property should only be used for observation. Get and set should be done from image property.
-    var dynamicImage = DynamicValue<UIImage?>(nil)
-    
     var image: UIImage? {
         get {
             if dynamicImage.value == nil {
@@ -52,6 +50,16 @@ class RecommendationViewModel {
         set {
             self.dynamicImage.value = newValue
         }
+    }
+    
+    private var dynamicImage = DynamicValue<UIImage?>(nil)
+    
+    func addObserverForImageAndNotify(_ observer: NSObject, completionHandler: @escaping CompletionHandler) {
+        dynamicImage.addAndNotify(observer: observer, completionHandler: completionHandler)
+    }
+    
+    func removeImageUpdateObservers() {
+        dynamicImage.removeAllObservers()
     }
     
     func unwrapRecommendation() -> Recommendation {
