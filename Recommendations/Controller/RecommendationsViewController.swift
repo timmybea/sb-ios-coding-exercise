@@ -10,7 +10,14 @@ class RecommendationsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
         
-    private var recommendations = [Recommendation]()
+    private var recommendations = [Recommendation]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     private var pendingImageTasks: [URL : URLSessionDataTask] = [:]
     
@@ -32,7 +39,6 @@ class RecommendationsViewController: UIViewController {
 //        tableView.delegate = self
         
         self.recommendations = getTopTen(RecommendationResultArchiveService.shared.getAll().first)
-        self.tableView.reloadData()
         
         // NOTE: please maintain the stubbed url we use here and the usage of
         // a URLSession dataTask to ensure our stubbed response continues to
@@ -43,12 +49,8 @@ class RecommendationsViewController: UIViewController {
                 
                 RecommendationResultArchiveService.shared.removeAll()
                 RecommendationResultArchiveService.shared.save(recommendationResult)
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.recommendations = self.getTopTen(recommendationResult)
-                    self.tableView.reloadData()
-                }
+               
+                self.recommendations = self.getTopTen(recommendationResult)
                 
             case .failure(let error):
                 fatalError("Error recommendation service: \(error), File: \(#file), Line: \(#line)")
