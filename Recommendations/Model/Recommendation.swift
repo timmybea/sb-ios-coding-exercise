@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Recommendation: NSObject, NSCoding, Codable {
+class Recommendation: NSObject, Codable {
     var imageURL: String
     var title: String
     var tagline: String
@@ -35,19 +35,15 @@ class Recommendation: NSObject, NSCoding, Codable {
         self.rating = (try? container.decode(Float.self, forKey: .rating)) ?? 0.0
     }
     
-    required init?(coder: NSCoder) {
-        self.imageURL = coder.decodeObject(forKey: RecommendationKey.imageURL.rawValue) as? String ?? ""
-        self.title = coder.decodeObject(forKey: RecommendationKey.title.rawValue) as? String ?? ""
-        self.tagline = coder.decodeObject(forKey: RecommendationKey.tagline.rawValue) as? String ?? ""
-        self.rating = coder.decodeObject(forKey: RecommendationKey.rating.rawValue) as? Float ?? 0.0
-        self.isReleased = coder.decodeObject(forKey: RecommendationKey.isReleased.rawValue) as? Bool ?? false
-     }
-     
-     func encode(with coder: NSCoder) {
-        coder.encode(self.imageURL, forKey: RecommendationKey.imageURL.rawValue)
-        coder.encode(self.title, forKey: RecommendationKey.title.rawValue)
-        coder.encode(self.tagline, forKey: RecommendationKey.tagline.rawValue)
-        coder.encode(self.isReleased, forKey: RecommendationKey.isReleased.rawValue)
-     }
-    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: RecommendationKey.self)
+        
+        try container.encode(imageURL, forKey: .imageURL)
+        try container.encode(title, forKey: .title)
+        try container.encode(tagline, forKey: .tagline)
+        try container.encode(isReleased, forKey: .isReleased)
+        try container.encode(rating, forKey: .rating)
+        
+    }
+        
 }

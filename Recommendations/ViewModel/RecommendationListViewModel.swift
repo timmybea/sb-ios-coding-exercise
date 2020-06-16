@@ -29,7 +29,7 @@ class RecommendationListViewModel {
             print("Error: Missing service")
             return
         }
-        
+
         //Set datasource with locally stored data
         dataSource?.data.value = getTopTen(RecommendationResultArchiveService.shared.getAll().first)
         
@@ -51,7 +51,7 @@ class RecommendationListViewModel {
     
     private func getTopTen(_ recommendationResult: RecommendationResult?) -> [RecommendationViewModel] {
         guard let unwrappedResult = recommendationResult else { return [] }
-        let topTen = unwrappedResult.titles.filter({ $0.isReleased && !unwrappedResult.titlesOwned.contains($0.title)})
+        let topTen = unwrappedResult.titles.filter({ $0.isReleased && !unwrappedResult.titlesOwned.contains($0.title) })
             .sorted(by: { $0.rating > $1.rating })
             .prefix(10)
             

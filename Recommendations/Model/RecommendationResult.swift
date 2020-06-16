@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecommendationResult: NSObject, NSCoding, Codable {
+class RecommendationResult: NSObject, Codable {
     
     var titles: [Recommendation]
     var skipped: [String]
@@ -28,17 +28,12 @@ class RecommendationResult: NSObject, NSCoding, Codable {
         self.titlesOwned = try container.decode([String].self, forKey: .titlesOwned)
     }
     
-    required init?(coder: NSCoder) {
-        self.titles = coder.decodeObject(forKey: RecommendationResultKey.titles.rawValue) as? [Recommendation] ?? []
-        self.skipped = coder.decodeObject(forKey: RecommendationResultKey.skipped.rawValue) as? [String] ?? []
-        self.titlesOwned = coder.decodeObject(forKey: RecommendationResultKey.titlesOwned.rawValue) as? [String] ?? []
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: RecommendationResultKey.self)
+           
+        try container.encode(titles, forKey: .titles)
+        try container.encode(skipped, forKey: .skipped)
+        try container.encode(titlesOwned, forKey: .titlesOwned)
     }
-    
-    func encode(with coder: NSCoder) {
-        coder.encode(self.titles, forKey: RecommendationResultKey.titles.rawValue)
-        coder.encode(self.skipped, forKey: RecommendationResultKey.skipped.rawValue)
-        coder.encode(self.titlesOwned, forKey: RecommendationResultKey.titlesOwned.rawValue)
-    }
-    
     
 }

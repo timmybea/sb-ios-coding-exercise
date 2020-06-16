@@ -9,7 +9,7 @@
 import UIKit
 
 //MARK: ArchiveService
-class ArchiveService<T: NSObject & NSCoding> {
+class ArchiveService<T: NSObject & Codable> {
     
     let archiveUrl: URL
     
@@ -29,8 +29,10 @@ class ArchiveService<T: NSObject & NSCoding> {
         
         do {
             let data = try Data(contentsOf: archiveUrl)
-            guard let unarchived = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [T] else { return }
+        
+            guard let unarchived = try? JSONDecoder().decode([T].self, from: data) else { return }
             unarchivedObjects = Set(unarchived)
+            
         } catch {
             print("\(error.localizedDescription), file: \(#file), line: \(#line)")
         }
@@ -42,7 +44,10 @@ class ArchiveService<T: NSObject & NSCoding> {
         var allObjects = [T]()
         accessQueue.sync {
             allObjects = Array(self.unarchivedObjects)
+            print("HERE: allObjects \(allObjects)")
         }
+        print("HERE: unarchived \(unarchivedObjects)")
+        print("HERE: returning objects \(allObjects)")
         return allObjects
     }
 
@@ -74,8 +79,10 @@ class ArchiveService<T: NSObject & NSCoding> {
         accessQueue.sync(flags: .barrier, execute: {
             do {
                 let rootObject = Array(self.unarchivedObjects)
-                let data = try NSKeyedArchiver.archivedData(withRootObject: rootObject, requiringSecureCoding: false)
+                let data = try JSONEncoder().encode(rootObject)
+
                 try data.write(to: archiveUrl)
+                
             } catch {
                 print("\(error.localizedDescription), file: \(#file), line:\(#line)")
             }
