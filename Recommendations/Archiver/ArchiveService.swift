@@ -44,10 +44,7 @@ class ArchiveService<T: NSObject & Codable> {
         var allObjects = [T]()
         accessQueue.sync {
             allObjects = Array(self.unarchivedObjects)
-            print("HERE: allObjects \(allObjects)")
         }
-        print("HERE: unarchived \(unarchivedObjects)")
-        print("HERE: returning objects \(allObjects)")
         return allObjects
     }
 

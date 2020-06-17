@@ -21,6 +21,16 @@
 		B0397F1424622BD2009B9D00 /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1324622BD2009B9D00 /* RecommendationService.swift */; };
 		B0397F1B24624145009B9D00 /* ArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1A24624145009B9D00 /* ArchiveService.swift */; };
 		B0397F1D246241A4009B9D00 /* RecommendationResultArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */; };
+		B05B777324998AB000E2CE3C /* ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A87BB3E244F69CC008A8669 /* ratings.json */; };
+		B05B777524998AF500E2CE3C /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B777424998AF500E2CE3C /* JSONData.swift */; };
+		B05B777724998B6800E2CE3C /* RecommendationResultTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B777624998B6800E2CE3C /* RecommendationResultTest.swift */; };
+		B05B777A249A577F00E2CE3C /* recommendation.json in Resources */ = {isa = PBXBuildFile; fileRef = B05B7779249A577F00E2CE3C /* recommendation.json */; };
+		B05B777C249A57B200E2CE3C /* RecommendationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B777B249A57B200E2CE3C /* RecommendationTest.swift */; };
+		B05B777D249A590700E2CE3C /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F0E246224BB009B9D00 /* Recommendation.swift */; };
+		B05B7781249A8FFB00E2CE3C /* RecommendationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1024622B4C009B9D00 /* RecommendationResult.swift */; };
+		B05B7783249A93D200E2CE3C /* MockEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B7782249A93D200E2CE3C /* MockEndPoint.swift */; };
+		B05B7785249A94FF00E2CE3C /* RecommendationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05B7784249A94FF00E2CE3C /* RecommendationServiceTest.swift */; };
+		B05B7786249A951800E2CE3C /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0397F1324622BD2009B9D00 /* RecommendationService.swift */; };
 		B0D8EF932462FC750031F8F6 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF922462FC750031F8F6 /* RecommendationViewModel.swift */; };
 		B0D8EF98246335920031F8F6 /* RecommendationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF97246335920031F8F6 /* RecommendationListViewModel.swift */; };
 		B0D8EF9A24633FE60031F8F6 /* RecommendationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8EF9924633FE60031F8F6 /* RecommendationDataSource.swift */; };
@@ -48,6 +58,14 @@
 		B0397F1324622BD2009B9D00 /* RecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationService.swift; sourceTree = "<group>"; };
 		B0397F1A24624145009B9D00 /* ArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveService.swift; sourceTree = "<group>"; };
 		B0397F1C246241A4009B9D00 /* RecommendationResultArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationResultArchiver.swift; sourceTree = "<group>"; };
+		B05B776B24998A9E00E2CE3C /* RecommendedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecommendedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B05B776F24998A9E00E2CE3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B05B777424998AF500E2CE3C /* JSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONData.swift; sourceTree = "<group>"; };
+		B05B777624998B6800E2CE3C /* RecommendationResultTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationResultTest.swift; sourceTree = "<group>"; };
+		B05B7779249A577F00E2CE3C /* recommendation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recommendation.json; sourceTree = "<group>"; };
+		B05B777B249A57B200E2CE3C /* RecommendationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationTest.swift; sourceTree = "<group>"; };
+		B05B7782249A93D200E2CE3C /* MockEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEndPoint.swift; sourceTree = "<group>"; };
+		B05B7784249A94FF00E2CE3C /* RecommendationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationServiceTest.swift; sourceTree = "<group>"; };
 		B0D8EF922462FC750031F8F6 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
 		B0D8EF97246335920031F8F6 /* RecommendationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationListViewModel.swift; sourceTree = "<group>"; };
 		B0D8EF9924633FE60031F8F6 /* RecommendationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationDataSource.swift; sourceTree = "<group>"; };
@@ -60,6 +78,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4925D209D942A35ADF2FD9E /* libPods-Recommendations.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B05B776824998A9E00E2CE3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				7A7852F2244F410900651421 /* Recommendations */,
+				B05B776C24998A9E00E2CE3C /* RecommendedTests */,
 				7A7852F1244F410900651421 /* Products */,
 				5FC35D115BB62EA5CDF6C48B /* Pods */,
 				6FDE32464C86C2038B8BD17C /* Frameworks */,
@@ -97,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7A7852F0244F410900651421 /* Recommended.app */,
+				B05B776B24998A9E00E2CE3C /* RecommendedTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +199,28 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		B05B776C24998A9E00E2CE3C /* RecommendedTests */ = {
+			isa = PBXGroup;
+			children = (
+				B05B7778249A575A00E2CE3C /* Do Not Modify */,
+				B05B777624998B6800E2CE3C /* RecommendationResultTest.swift */,
+				B05B777B249A57B200E2CE3C /* RecommendationTest.swift */,
+				B05B7784249A94FF00E2CE3C /* RecommendationServiceTest.swift */,
+				B05B776F24998A9E00E2CE3C /* Info.plist */,
+			);
+			path = RecommendedTests;
+			sourceTree = "<group>";
+		};
+		B05B7778249A575A00E2CE3C /* Do Not Modify */ = {
+			isa = PBXGroup;
+			children = (
+				B05B7779249A577F00E2CE3C /* recommendation.json */,
+				B05B777424998AF500E2CE3C /* JSONData.swift */,
+				B05B7782249A93D200E2CE3C /* MockEndPoint.swift */,
+			);
+			path = "Do Not Modify";
+			sourceTree = "<group>";
+		};
 		B0D8EF912462FC590031F8F6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,18 +253,38 @@
 			productReference = 7A7852F0244F410900651421 /* Recommended.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B05B776A24998A9E00E2CE3C /* RecommendedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B05B777024998A9E00E2CE3C /* Build configuration list for PBXNativeTarget "RecommendedTests" */;
+			buildPhases = (
+				B05B776724998A9E00E2CE3C /* Sources */,
+				B05B776824998A9E00E2CE3C /* Frameworks */,
+				B05B776924998A9E00E2CE3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecommendedTests;
+			productName = RecommendedTests;
+			productReference = B05B776B24998A9E00E2CE3C /* RecommendedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7A7852E8244F410900651421 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Serial Box";
 				TargetAttributes = {
 					7A7852EF244F410900651421 = {
 						CreatedOnToolsVersion = 11.4;
+					};
+					B05B776A24998A9E00E2CE3C = {
+						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
@@ -233,6 +302,7 @@
 			projectRoot = "";
 			targets = (
 				7A7852EF244F410900651421 /* Recommendations */,
+				B05B776A24998A9E00E2CE3C /* RecommendedTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +317,15 @@
 				7A7852FD244F410B00651421 /* Assets.xcassets in Resources */,
 				7A7852FB244F410900651421 /* Main.storyboard in Resources */,
 				7A87BB3F244F69CC008A8669 /* ratings.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B05B776924998A9E00E2CE3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B05B777A249A577F00E2CE3C /* recommendation.json in Resources */,
+				B05B777324998AB000E2CE3C /* ratings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +374,21 @@
 				B0D8EF9A24633FE60031F8F6 /* RecommendationDataSource.swift in Sources */,
 				B0397F1124622B4C009B9D00 /* RecommendationResult.swift in Sources */,
 				B0397F1D246241A4009B9D00 /* RecommendationResultArchiver.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B05B776724998A9E00E2CE3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B05B7781249A8FFB00E2CE3C /* RecommendationResult.swift in Sources */,
+				B05B777D249A590700E2CE3C /* Recommendation.swift in Sources */,
+				B05B7785249A94FF00E2CE3C /* RecommendationServiceTest.swift in Sources */,
+				B05B7783249A93D200E2CE3C /* MockEndPoint.swift in Sources */,
+				B05B7786249A951800E2CE3C /* RecommendationService.swift in Sources */,
+				B05B777C249A57B200E2CE3C /* RecommendationTest.swift in Sources */,
+				B05B777524998AF500E2CE3C /* JSONData.swift in Sources */,
+				B05B777724998B6800E2CE3C /* RecommendationResultTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +568,44 @@
 			};
 			name = Release;
 		};
+		B05B777124998A9E00E2CE3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2733C6P24Y;
+				INFOPLIST_FILE = RecommendedTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roobicreative.RecommendedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B05B777224998A9E00E2CE3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2733C6P24Y;
+				INFOPLIST_FILE = RecommendedTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roobicreative.RecommendedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -491,6 +623,15 @@
 			buildConfigurations = (
 				7A785305244F410B00651421 /* Debug */,
 				7A785306244F410B00651421 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B05B777024998A9E00E2CE3C /* Build configuration list for PBXNativeTarget "RecommendedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B05B777124998A9E00E2CE3C /* Debug */,
+				B05B777224998A9E00E2CE3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

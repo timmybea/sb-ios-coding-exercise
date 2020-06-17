@@ -13,7 +13,7 @@ class BaseWebService {
         
         enum WebServiceError: Error {
             case invalidResponse
-            case statusCode(_ status: Int)
+            case statusCode
             case noData
             case parsing
         }
@@ -23,11 +23,10 @@ class BaseWebService {
 //MARK: RecommendationService
 class RecommendationService: BaseWebService {
     
-    func getRecommendedTitles(_ completion: @escaping(Swift.Result<RecommendationResult, Swift.Error>) ->()) {
-        guard let url = URL(string: Stub.stubbedURL_doNotChange) else { fatalError() }
+    func getRecommendedTitles(session: URLSession = URLSession(configuration: .default), _ completion: @escaping(Swift.Result<RecommendationResult, Swift.Error>) ->()) {
+        guard let url = URL(string: "https://www.address-does-not-matter.com") else { fatalError() }
         
         let request = URLRequest(url: url)
-        let session = URLSession(configuration: .default)
         
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             
@@ -54,10 +53,10 @@ class RecommendationService: BaseWebService {
                     completion(.success(recommendationResult))
                 }
                 catch {
-                    completion(.failure(error))
+                    completion(.failure(WebServiceError.parsing))
                 }
             default:
-                completion(.failure(WebServiceError.statusCode(responseHTTPURL.statusCode)))
+                completion(.failure(WebServiceError.statusCode))
                 return
             }
         })
